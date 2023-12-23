@@ -8,78 +8,63 @@ export default {
     const store = useRanaStore();  
      
     const v_naam = ref(store.v_naam);
-    if (v_naam.value === '%') {
-      v_naam.value = '';
-    }
+
     const k_naam = ref(store.k_naam);
-    if (k_naam.value === '%') {
-      k_naam .value = '';
-    }
+
     const kad_plaats = ref(store.kad_plaats);
-    if (kad_plaats.value === '%') {
-      kad_plaats.value = '';
-    }
+ 
     const kad_sectie = ref(store.kad_sectie);
-    if (kad_sectie.value === '%') {
-      kad_sectie.value = '';
-    }
+
     const kad_kavel = ref(store.kad_kavel);
-    if (kad_kavel.value === '%') {
-      kad_kavel.value = '';
-    }
+
     const ra_of_na = ref(store.ra_of_na);
-    if (ra_of_na.value === '%') {
-      ra_of_na.value = '';
-    }
+
     const register = ref(store.register);
-    if (register.value === '%') {
-      register.value = '';
-    }
+ 
     const folio = ref(store.folio);
-    if (folio.value === '%') {
-      folio.value = '';
-    }
+ 
     const datum = ref(store.datum);
-    if (datum.value === '%') {
-      datum.value = '';
-    }
+
     const plaats = ref(store.plaats);
-    if (plaats.value === '%') {
-      plaats.value = '';
-    }
+ 
     const kaart_nr = ref(store.kaart_nr);
-    if (kaart_nr.value === '%') {
-      kaart_nr.value = '';
-    }
+
  
 
     function addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr) {
+      if (v_naam.length === 0) {
+        v_naam = '';
+      };
+      if (k_naam.length === 0) {
+        k_naam = '';
+      };
+
       if (kad_plaats.length === 0) {
-        kad_plaats = '%';
+        kad_plaats = '';
       };
       if (kad_sectie.length === 0) {
-        kad_sectie = '%';
+        kad_sectie = '';
       };
       if (kad_kavel.length === 0) {
-        kad_kavel = '%';
+        kad_kavel = '';
       };
       if (ra_of_na.length === 0) {
-        ra_of_na = '%';
+        ra_of_na = '';
       };
       if (register.length === 0) {
-        register = '%';
+        register = '';
       };
       if (folio.length === 0) {
-        folio = '%';
+        folio = '';
       };
       if (datum.length === 0) {
-        datum = '%';
+        datum = '';
       };
       if (plaats.length === 0) {
-        plaats = '%';
+        plaats = '';
       };
       if (kaart_nr.length === 0) {
-        kaart_nr = '%';
+        kaart_nr = '';
       };
  
 
@@ -115,7 +100,7 @@ export default {
 <template>
   <div>
     
-    <form class="w3-container w3-dark-grey"    @submit.prevent="addSearch(v_naam, rana, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr )">
+    <form class="w3-container w3-dark-grey"    @submit.prevent="addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr )">
       <div class="w3-row">
           <div class="w3-col  m4 l4 w3-FloralWhite ">
             <p class="QuestH">

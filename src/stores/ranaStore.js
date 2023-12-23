@@ -5,17 +5,17 @@ export
  const useRanaStore = defineStore('ranaStore', {
     state: () => ({
         events: [],
-        v_naam: '%',
-        k_naam: '%',
-        kad_plaats: '%',
-        kad_sectie: '%',
-        kad_kavel: '%',
-        ra_of_na: '%',
-        register: '%',
-        folio: '%',
-        datum: '%',
-        plaats: '%',
-        kaart_nr: '%',
+        v_naam: '',
+        k_naam: '',
+        kad_plaats: '',
+        kad_sectie: '',
+        kad_kavel: '',
+        ra_of_na: '',
+        register: '',
+        folio: '',
+        datum: '',
+        plaats: '',
+        kaart_nr: '',
         offset: 0,
         count: [],
         pagenr : 1,
@@ -24,7 +24,7 @@ export
     // getters
     // actions
     actions: {
-        setSearch(v_naam, item, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr) {
+        setSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr) {
             this.v_naam = v_naam
             this.k_naam = k_naam          
             this.kad_plaats = kad_plaats
@@ -40,7 +40,7 @@ export
        
 
         getEvents() {
-            return EventService.getEvents()
+            return EventService.getEvents(v_naam)
             .then(response => {
                 this.events = response.data 
             })

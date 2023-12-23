@@ -13,7 +13,12 @@ const apiClient = axios.create({
 
 export default {
   getEvents() {
-    return apiClient.get('/?v_naam=')
+    return apiClient.get("/")
+  },
+
+ 
+  getSelection(v_naam) {
+      return apiClient.get("/?v_naam=" + v_naam)
   },
 
   getEvent(id) {
