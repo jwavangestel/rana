@@ -27,11 +27,11 @@ export default {
 
     const plaats = ref(store.plaats);
  
-    const kaart_nr = ref(store.kaart_nr);
+    const qkaart_nr = ref(store.qkaart_nr);
 
  
 
-    function addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr) {
+    function addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, qkaart_nr) {
       if (v_naam.length === 0) {
         v_naam = '';
       };
@@ -63,12 +63,12 @@ export default {
       if (plaats.length === 0) {
         plaats = '';
       };
-      if (kaart_nr.length === 0) {
-        kaart_nr = '';
+      if (qkaart_nr.length === 0) {
+        qkaart_nr = '';
       };
  
 
-      store.setSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr);  
+      store.setSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, qkaart_nr);  
 
     
 
@@ -89,7 +89,7 @@ export default {
       folio, 
       datum, 
       plaats, 
-      kaart_nr
+      qkaart_nr
     };
   },
 };
@@ -100,7 +100,7 @@ export default {
 <template>
   <div>
     
-    <form class="w3-container w3-dark-grey"    @submit.prevent="addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, kaart_nr )">
+    <form class="w3-container w3-dark-grey"    @submit.prevent="addSearch(v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, qkaart_nr )">
       <div class="w3-row">
           <div class="w3-col  m4 l4 w3-FloralWhite ">
             <p class="QuestH">
@@ -126,7 +126,7 @@ export default {
                       <td>Plaats : </td>
                       <td><input class="plaats" v-model="plaats" type="text" /></td>
                       <td>Kaart nr : </td>
-                      <td><input class="kaart_nr" v-model="kaart_nr" type="text" /></td>
+                      <td><input class="kaart_nr" v-model="qkaart_nr" type="text" /></td>
                     </tr>
                   </table>
              </p>    

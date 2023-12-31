@@ -1,10 +1,26 @@
 <script setup>
 import axios from 'axios'
-import { ref, onMounted } from 'vue'
-import BookCard from '@/components/BookCard.vue'
+import { ref, onMounted, watch, computed } from 'vue'
+//import BookCard from '@/components/BookCard.vue'
 import EventService from '@/services/EventService.js'
+import { useRanaStore } from '@/stores/ranaStore.js'
 
 const events = ref(null)
+const rana_Store = useRanaStore()
+
+
+const v_naam = computed(() => rana_Store.v_naam);
+const k_naam = computed(() => rana_Store.k_naam);
+const kad_plaats = computed(() => rana_Store.kad_plaats);
+const kad_sectie = computed(() => rana_Store.kad_sectie);
+const kad_kavel = computed(() => rana_Store.kad_kavel);
+const ra_of_na = computed(() => rana_Store.ra_of_na);
+const register = computed(() => rana_Store.register);
+const folio = computed(() => rana_Store.folio);
+const datum = computed(() => rana_Store.datum);
+const plaats = computed(() => rana_Store.plaats);
+const qkaart_nr = computed(() => rana_Store.qkaart_nr);
+
 
 defineProps({
   event: {
@@ -14,15 +30,54 @@ defineProps({
 })
 
 onMounted(() => {
-  EventService.getEvents()
-    .then((response) => {
-      events.value = response.data
-      console.log(response.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const v_Naam = ref(v_naam.value);
+  const k_Naam = ref(k_naam.value);
+  const kad_Plaats = ref(kad_plaats);
+  const kad_Sectie = ref(kad_sectie);
+  const kad_Kavel= ref(kad_kavel);
+  const ra_of_Na = ref(ra_of_na);
+  const Register= ref(register);
+  const Folio = ref(folio);
+  const Datum = ref(datum);
+  const Plaats = ref(plaats);
+  const Qkaart_nr = ref(qkaart_nr);
+  rana_Store.getSelection(v_Naam, k_Naam, kad_Plaats, kad_Sectie, kad_Kavel, ra_of_Na, Register, Folio, Datum, Plaats, Qkaart_nr ).catch(error => {
+    this.router.push(
+      {
+        name: 'ErrorDisplay',
+        params: { error: error }
+      }
+    )
+  })
 })
+
+watch ([v_naam, k_naam, kad_plaats, kad_sectie, kad_kavel, ra_of_na, register, folio, datum, plaats, qkaart_nr ], () => {
+  const v_Naam = ref(v_naam.value);
+  const k_Naam = ref(k_naam.value);
+  const kad_Plaats = ref(kad_plaats);
+  const kad_Sectie = ref(kad_sectie);
+  const kad_Kavel = ref(kad_kavel);
+  const ra_of_Na = ref(ra_of_na);
+  const Register= ref(register);
+  const Folio = ref(folio);
+  const Datum = ref(datum);
+  const Plaats = ref(plaats);
+  const Qkaart_nr = ref(qkaart_nr);
+
+  rana_Store.getSelection(v_Naam, k_Naam, kad_Plaats, kad_Sectie, kad_Kavel, ra_of_Na, Register, Folio, Datum, Plaats, Qkaart_nr ).catch(error => {
+    this.router.push(
+      {
+        name: 'ErrorDisplay',
+        params: { error: error }
+      }
+    )
+  })
+
+})
+
+
+
+
 
 </script>
 
@@ -30,7 +85,7 @@ onMounted(() => {
 
   <h1>RANA</h1>
 
-   <div v-for="data in events">
+   <div v-for="data in rana_Store.events">
 			<div>
           <div class="w3-container">
             <table class="w3-table w3-bordered w3-hoverable">
